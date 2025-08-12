@@ -2,6 +2,7 @@ package com.example.demo_tes_interview.controller;
 
 import com.example.demo_tes_interview.model.ApiResult;
 import com.example.demo_tes_interview.model.PageRespown;
+import com.example.demo_tes_interview.service.GetDataService;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
@@ -18,12 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 public class testingApi {
 
+    private final GetDataService getDataService;
     @GetMapping
     public ResponseEntity<PageRespown<ApiResult>> list(
-            @RequestParam(required = false) Integer page,
-            @RequestParam(required = false) @Min(1) @Max(100) Integer size,
-            @RequestParam(required = false) Long userId
+            @RequestParam @Min(1) Integer page,
+            @RequestParam @Min(1) @Max(100) Integer size
     ){
-        return ResponseEntity.ok(service.list(page,size,userId));
+        return ResponseEntity.ok(getDataService.find(page, size));
     }
 }

@@ -5,7 +5,7 @@ import com.example.demo_tes_interview.model.PageRespown;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface getDataTesting {
+public interface GetDataService {
 
-    PageRespown<ApiResult> findAll(Long userId, int page, int size);
+    PageRespown<ApiResult> find(int page, int size);
 }
